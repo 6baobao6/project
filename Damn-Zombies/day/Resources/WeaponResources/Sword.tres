@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=4 format=3 uid="uid://jhta183re3kq"]
+
+[ext_resource type="Script" uid="uid://bos36sjjxu8fa" path="res://day/Scripts/ResourceScripts/WeaponResource.gd" id="1_4lbua"]
+[ext_resource type="Texture2D" uid="uid://d4nb6sn0xywmx" path="res://day/Assets/Items/Weapons/Sword2/Sprite.png" id="2_27of7"]
+[ext_resource type="Texture2D" uid="uid://orr7glipnd20" path="res://day/Assets/Items/Weapons/Sword2/SpriteInHand.png" id="3_e2n15"]
+
+[resource]
+script = ExtResource("1_4lbua")
+name = "Sword"
+icon = ExtResource("2_27of7")
+weapon_sprite = ExtResource("3_e2n15")
+damage = 2
+stun_lock = 1.0
+heavy_weapon = false
+effect = 0
+item_name = "Sword"
+descripton = "Your trusty blade. reliably quick to use with average damage."

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgpqh5e18miia"]
+
+[ext_resource type="Texture2D" uid="uid://bmj52fuhgclak" path="res://day/Assets/Items/Treasure/BigTreasureChest.png" id="1_k6mvy"]
+[ext_resource type="Script" uid="uid://bc458lwumfn0m" path="res://day/Scripts/base_chest.gd" id="1_n145h"]
+[ext_resource type="Texture2D" uid="uid://chgaerhc0cqhy" path="res://day/Assets/Items/Weapons/Whip/Sprite.png" id="3_hdgph"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n145h"]
+atlas = ExtResource("1_k6mvy")
+region = Rect2(0, 0, 16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdgph"]
+atlas = ExtResource("1_k6mvy")
+region = Rect2(16, 0, 16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_710bg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n145h")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdgph")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6mvy"]
+size = Vector2(16, 12)
+
+[node name="BaseChest" type="StaticBody2D"]
+script = ExtResource("1_n145h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_710bg")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_k6mvy")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="KeyPrompt" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -18.0
+offset_right = 79.0
+offset_bottom = 117.0
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 100
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+texture = ExtResource("3_hdgph")

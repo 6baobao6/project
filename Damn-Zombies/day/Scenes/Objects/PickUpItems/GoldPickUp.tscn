@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw4j3e7mcbda2"]
+
+[ext_resource type="PackedScene" uid="uid://c6tsu7lvspmtv" path="res://day/Scenes/Objects/BasePickUp.tscn" id="1_2pi68"]
+[ext_resource type="Texture2D" uid="uid://dwbnkwprqpa22" path="res://day/Assets/Items/Treasure/GoldCoin.png" id="2_qvs4u"]
+
+[node name="GoldPickUp" instance=ExtResource("1_2pi68")]
+texture = ExtResource("2_qvs4u")
+despawn_timer = 5.0
+coins_given = 5

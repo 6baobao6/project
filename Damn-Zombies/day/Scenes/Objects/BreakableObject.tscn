@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0s51lbml2chh"]
+
+[ext_resource type="PackedScene" uid="uid://b8pg5ggepc8vn" path="res://day/Scenes/Objects/PickUpItems/HeartPickUp.tscn" id="1_an6df"]
+[ext_resource type="Texture2D" uid="uid://dt4xgr6km3adq" path="res://day/Assets/Backgrounds/Tilesets/TilesetNature.png" id="2_addyh"]
+[ext_resource type="PackedScene" uid="uid://duoqbsj0kmmrp" path="res://day/Scenes/Objects/PickUpItems/SilverPickUp.tscn" id="2_uwim4"]
+[ext_resource type="PackedScene" uid="uid://bw4j3e7mcbda2" path="res://day/Scenes/Objects/PickUpItems/GoldPickUp.tscn" id="3_3bx7a"]
+
+[sub_resource type="GDScript" id="GDScript_v5lgs"]
+resource_name = "BreakableObject"
+script/source = "extends StaticBody2D
+
+@export var health : int
+@export_range(0, 100) var dropChance : float
+@export var Droppables : Array[PackedScene]
+@export var play_sound : bool
+
+func _take_damage(damage, _stun_lock):
+	health -= damage
+	if (health <= 0):
+		if play_sound:
+			SoundManager.play_sound(SoundManager.SOUND.BREAK_BUSH)
+		_drop_item()
+		queue_free()
+
+func _drop_item():
+	if GameManager.random.randf_range(0, 100) < dropChance:
+		var i = GameManager.random.randf_range(0, Droppables.size())
+		var item = Droppables[i]
+		item = item.instantiate()
+		item.global_position = global_position
+		get_parent().call_deferred(\"add_child\", item)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obn16"]
+size = Vector2(10, 10)
+
+[node name="BreakableObject" type="StaticBody2D" groups=["hitbox"]]
+collision_layer = 16
+collision_mask = 14
+script = SubResource("GDScript_v5lgs")
+dropChance = 30.0
+Droppables = Array[PackedScene]([ExtResource("1_an6df"), ExtResource("2_uwim4"), ExtResource("3_3bx7a")])
+play_sound = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_obn16")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_addyh")
+hframes = 24
+vframes = 21
+frame = 269

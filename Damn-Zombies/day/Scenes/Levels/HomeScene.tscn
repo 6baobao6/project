@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckrpjjbi14kov"]
+
+[ext_resource type="TileSet" uid="uid://duxxfmxo0ou7w" path="res://day/Assets/InteriorTileset.tres" id="1_gy420"]
+[ext_resource type="Script" uid="uid://ewndnbtt83tm" path="res://day/Scripts/CameraMovement.gd" id="2_wergj"]
+[ext_resource type="PackedScene" uid="uid://b0yxyhit56ocu" path="res://day/Scenes/GameUI.tscn" id="3_qgl00"]
+[ext_resource type="PackedScene" uid="uid://dsm3d6r5brn16" path="res://day/Scenes/Characters/Player.tscn" id="4_p10fa"]
+[ext_resource type="PackedScene" uid="uid://boj2yua2rwd2t" path="res://day/Scenes/Objects/SimpleInteract.tscn" id="6_ex5fq"]
+[ext_resource type="PackedScene" uid="uid://b22ur6ag5uk63" path="res://day/Scenes/Objects/SceneChangeBox.tscn" id="6_xofx8"]
+[ext_resource type="Script" uid="uid://c20si6b3qr1wg" path="res://day/Scripts/day_night_cycle.gd" id="7_gixvt"]
+
+[sub_resource type="Animation" id="Animation_ev330"]
+resource_name = "Day_Night_cycle"
+length = 960.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 240, 480, 720, 960),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.266667, 0.431373, 0.588235, 1), Color(0.384314, 0.580392, 0.784314, 1), Color(0.541176, 0.823529, 1, 1), Color(0.698039, 0.898039, 1, 1), Color(0.705882, 0.627451, 0.0313726, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gixvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5njx"]
+_data = {
+&"Day_Night_cycle": SubResource("Animation_ev330"),
+&"RESET": SubResource("Animation_gixvt")
+}
+
+[node name="HomeScene" type="TileMap"]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(-1, 0)
+tile_set = ExtResource("1_gy420")
+format = 2
+layer_0/name = "Ground"
+layer_0/y_sort_enabled = true
+layer_0/z_index = -10
+layer_0/tile_data = PackedInt32Array(524299, 1376256, 9, 589831, 1376256, 8, 720902, 917504, 7, 655366, 1310720, 8, 589830, 1310720, 8, 589829, 1310720, 8, 524294, 1310720, 9, 524295, 1376256, 9, 524296, 1310720, 9, 524298, 1310720, 9, 524293, 1376256, 9, 393223, 1310720, 9, 327687, 1310720, 8, 327688, 1310720, 8, 327686, 1376256, 8, 393220, 1310720, 9, 393221, 1310720, 9, 393222, 1376256, 9, 327684, 1310720, 8, 393227, 1376256, 9, 327689, 1376256, 8, 327685, 1310720, 8, 327691, 1376256, 8, 327690, 1310720, 8, 458763, 1376256, 8, 458756, 1310720, 8, 458757, 1376256, 8, 458758, 1310720, 8, 458759, 1376256, 8, 393226, 1310720, 9, 393224, 1310720, 9, 458760, 1310720, 8, 524297, 1376256, 9, 458762, 1310720, 8, 458761, 1376256, 8, 393225, 1376256, 9, 655365, 1179648, 6, 589828, 1310720, 8, 589832, 1310720, 8, 524292, 1310720, 8, 655367, 1179648, 6, 655364, 1310720, 8, 655368, 1310720, 8, 655369, 1310720, 8, 720901, 1179648, 9, 720903, 1179648, 9)
+layer_1/name = "Ground decoration1"
+layer_1/y_sort_enabled = true
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(720899, 5, 0, 655363, 589829, 19, 589827, 589829, 13, 524291, 589829, 13, 458755, 589829, 13, 393219, 589829, 13, 327683, 589829, 13, 262147, 524293, 11, 65539, 5, 0, 3, 5, 0, 720898, 5, 0, 655362, 5, 0, 589826, 5, 0, 524290, 5, 0, 458754, 5, 0, 393218, 5, 0, 327682, 5, 0, 262146, 5, 0, 196610, 5, 0, 131074, 5, 0, 65538, 5, 0, 2, 5, 0, 720897, 5, 0, 655361, 5, 0, 589825, 5, 0, 524289, 5, 0, 458753, 5, 0, 393217, 5, 0, 327681, 5, 0, 262145, 5, 0, 196609, 5, 0, 131073, 5, 0, 65537, 5, 0, 1, 5, 0, 720896, 5, 0, 655360, 5, 0, 589824, 5, 0, 524288, 5, 0, 458752, 5, 0, 393216, 5, 0, 327680, 5, 0, 262144, 5, 0, 196608, 5, 0, 131072, 5, 0, 0, 5, 0, 720911, 5, 0, 655375, 5, 0, 589839, 5, 0, 720910, 5, 0, 655374, 5, 0, 589838, 5, 0, 720909, 5, 0, 655373, 5, 0, 589837, 5, 0, 720908, 5, 0, 655372, 983045, 18, 720907, 5, 0, 655371, 851973, 19, 720906, 5, 0, 655370, 851973, 19, 720905, 5, 0, 655369, 851973, 19, 720904, 5, 0, 720903, 589829, 13, 720901, 917509, 14, 655365, 589829, 18, 720900, 5, 0, 655364, 851973, 19, 131087, 5, 0, 65551, 5, 0, 15, 5, 0, 131086, 5, 0, 65550, 5, 0, 14, 5, 0, 131085, 5, 0, 65549, 5, 0, 13, 5, 0, 131084, 5, 0, 65548, 5, 0, 12, 5, 0, 131083, 5, 0, 65547, 5, 0, 11, 5, 0, 131082, 5, 0, 65546, 5, 0, 10, 5, 0, 131081, 5, 0, 65545, 5, 0, 9, 5, 0, 131080, 5, 0, 65544, 5, 0, 8, 5, 0, 131079, 5, 0, 65543, 5, 0, 7, 5, 0, 131078, 5, 0, 65542, 5, 0, 6, 5, 0, 131077, 5, 0, 65541, 5, 0, 5, 5, 0, 131076, 5, 0, 65540, 5, 0, 4, 5, 0, 524303, 5, 0, 458767, 5, 0, 393231, 5, 0, 327695, 5, 0, 262159, 5, 0, 196623, 5, 0, 524302, 5, 0, 458766, 5, 0, 393230, 5, 0, 327694, 5, 0, 262158, 5, 0, 196622, 5, 0, 524301, 5, 0, 458765, 5, 0, 393229, 5, 0, 327693, 5, 0, 262157, 5, 0, 196621, 5, 0, 524300, 917509, 13, 458764, 917509, 13, 393228, 917509, 13, 327692, 917509, 13, 262156, 983045, 11, 196620, 5, 0, -65536, 851973, 10, 786432, 786437, 19, 851967, 524293, 12, 786431, 589829, 13, 720895, 589829, 13, 655359, 589829, 13, 589823, 589829, 13, 524287, 589829, 13, 458751, 589829, 13, 393215, 589829, 13, 327679, 589829, 13, 262143, 589829, 13, 196607, 589829, 13, 65535, 589829, 13, -1, 524293, 11, 786447, 786437, 19, 786446, 786437, 19, 786445, 786437, 19, 786444, 786437, 19, 786443, 786437, 19, 786442, 786437, 19, 786441, 786437, 19, 786440, 786437, 19, 786437, 589829, 11, 786436, 786437, 19, 786435, 786437, 19, 786434, 786437, 19, 786433, 786437, 19, 786448, 983045, 12, 720912, 917509, 14, 655376, 917509, 14, 589840, 917509, 14, 524304, 917509, 14, 458768, 917509, 14, 393232, 917509, 14, 327696, 917509, 14, 262160, 917509, 14, 196624, 917509, 14, 131088, 917509, 14, 65552, 917509, 14, 16, 917509, 14, -65520, 983045, 11, -65521, 851973, 10, -65522, 851973, 10, -65523, 851973, 10, -65524, 851973, 10, -65525, 851973, 10, -65526, 851973, 10, -65527, 851973, 10, -65528, 851973, 10, -65529, 851973, 10, -65530, 851973, 10, -65531, 851973, 10, -65532, 851973, 10, -65533, 851973, 10, -65534, 851973, 10, -65535, 851973, 10, 655367, 917509, 18, 786439, 917509, 11, 262155, 851973, 10, 196619, 5, 0, 262154, 851973, 10, 196618, 5, 0, 262153, 851973, 10, 196617, 5, 0, 262152, 851973, 10, 196616, 5, 0, 262151, 851973, 10, 196615, 5, 0, 262150, 851973, 10, 196614, 5, 0, 196613, 5, 0, 262148, 851973, 10, 196612, 5, 0, 131075, 5, 0, 196611, 5, 0, 65536, 5, 0, 131071, 589829, 13, 262149, 851973, 10, 589836, 917509, 13, 655368, 851973, 19)
+layer_2/name = "Ground decoration2"
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 1
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array(262154, 524294, 7, 327690, 524294, 8, 262155, 589830, 7, 327691, 589830, 8, 262148, 524294, 9, 262149, 589830, 9, 262150, 655366, 9, 458761, 6, 9, 458762, 196614, 9, 327684, 65542, 9, 262152, 524294, 10, 327688, 393222, 0, 589833, 131078, 10, 589834, 196614, 10, 589835, 262150, 10, 589828, 6, 10, 524293, 458758, 9)
+layer_3/name = "HighGround decoration1"
+layer_4/name = "Air decoration"
+layer_4/y_sort_enabled = true
+layer_4/z_index = 10
+layer_4/tile_data = PackedInt32Array(786438, 5, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("2_wergj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+follow_viewport_enabled = true
+
+[node name="GameUI" parent="Camera2D/CanvasLayer" instance=ExtResource("3_qgl00")]
+
+[node name="Player" parent="." groups=["hitbox"] instance=ExtResource("4_p10fa")]
+y_sort_enabled = true
+position = Vector2(120, 120)
+sprite_sheet = null
+
+[node name="SceneChangeBox" parent="." instance=ExtResource("6_xofx8")]
+position = Vector2(104, 192)
+next_scene = "VillageScene"
+next_pos = Vector2(183, 62)
+play_sound = true
+
+[node name="SimpleInteract" parent="." instance=ExtResource("6_ex5fq")]
+position = Vector2(136, 96)
+interact_text = "My old stuff!
+
+
+There is nothing inside that is worth bringing..."
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource("7_gixvt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasModulate"]
+libraries = {
+&"": SubResource("AnimationLibrary_w5njx")
+}

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8pg5ggepc8vn"]
+
+[ext_resource type="PackedScene" uid="uid://c6tsu7lvspmtv" path="res://day/Scenes/Objects/BasePickUp.tscn" id="1_ujn4e"]
+[ext_resource type="Texture2D" uid="uid://bmqru0568d6ts" path="res://day/Assets/Items/Potion/Hear.png" id="2_debtd"]
+[ext_resource type="Resource" uid="uid://cl5bgjglbp0bj" path="res://day/Resources/ItemResources/Heart.tres" id="3_oitxt"]
+
+[node name="HeartPickUp" instance=ExtResource("1_ujn4e")]
+texture = ExtResource("2_debtd")
+resource = ExtResource("3_oitxt")
+use_resource_on_touch = true
+despawn_timer = 10.0

@@ -1,0 +1,796 @@
+[gd_scene load_steps=22 format=4 uid="uid://dwc4qx4lfdgjv"]
+
+[ext_resource type="Script" uid="uid://b2j6qgtu4i6x2" path="res://Managers/lawn.gd" id="1_g72vm"]
+[ext_resource type="Script" uid="uid://dpl61ir0qs6kq" path="res://night/scripts/paused.gd" id="2_egcmh"]
+[ext_resource type="Texture2D" uid="uid://f5uxf7haeika" path="res://night/sprites/pvv_sunpea.png" id="3_yjeqd"]
+[ext_resource type="Texture2D" uid="uid://2novrdyskt0u" path="res://night/sprites/pvv_vine.png" id="4_ofah3"]
+[ext_resource type="Texture2D" uid="uid://cg1c8sq5s4mng" path="res://night/sprites/pvv_sunleaf.png" id="4_ql41n"]
+[ext_resource type="Texture2D" uid="uid://hhljxsuua52e" path="res://night/sprites/pvv_fly.png" id="5_pwjgy"]
+[ext_resource type="PackedScene" uid="uid://bv6kjkbxxvryr" path="res://night/scenes/cooldown_bar.tscn" id="5_xht25"]
+[ext_resource type="Texture2D" uid="uid://mhf2nxdgjqxt" path="res://night/sprites/pvv_peapea.png" id="6_hmj1v"]
+[ext_resource type="Texture2D" uid="uid://dy02nelf7w0h4" path="res://night/sprites/square.png" id="7_3gk1p"]
+[ext_resource type="Texture2D" uid="uid://ouam6ijtsl5h" path="res://night/sprites/pvv_tiles2.png" id="7_6uhf7"]
+[ext_resource type="Texture2D" uid="uid://d11m7u11hu3wu" path="res://night/sprites/pvv_tiles.png" id="10_hqyov"]
+[ext_resource type="Texture2D" uid="uid://d36v415lv0iip" path="res://night/sprites/pvv_peaspike.png" id="11_h2omc"]
+[ext_resource type="Texture2D" uid="uid://bhwyd3x5umc1j" path="res://night/sprites/pvv_rose.png" id="12_hrmrm"]
+[ext_resource type="PackedScene" uid="uid://ckghvqyot0wc" path="res://night/scenes/timer.tscn" id="14_hrmrm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eymok"]
+load_path = "res://.godot/imported/pvv_tiles.png-4db2e4440509f4c95e36c6887defee69.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bg8c"]
+texture = SubResource("CompressedTexture2D_eymok")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evor5"]
+texture = ExtResource("7_6uhf7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8dl8b"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_6bg8c")
+sources/1 = SubResource("TileSetAtlasSource_evor5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pil5"]
+size = Vector2(32, 160)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_45po4"]
+texture = SubResource("CompressedTexture2D_eymok")
+texture_region_size = Vector2i(32, 32)
+3:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xw7xv"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_45po4")
+
+[node name="lawn" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_g72vm")
+
+[node name="pausetext" type="Node2D" parent="."]
+process_mode = 3
+visible = false
+z_index = 1201
+position = Vector2(218, 125)
+scale = Vector2(0.8, 0.8)
+
+[node name="Label" type="Label" parent="pausetext"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="pausetext"]
+offset_left = -91.25
+offset_top = 35.0
+offset_right = 146.75
+offset_bottom = 58.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Current Score: "
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="pausetext"]
+offset_left = -151.25
+offset_top = 57.5
+offset_right = 207.75
+offset_bottom = 106.5
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 7
+text = "Score is the danger level! the higher the more enemy spawn rate!"
+horizontal_alignment = 1
+
+[node name="restart" type="Sprite2D" parent="pausetext"]
+modulate = Color(0.981127, 0.339741, 0.391828, 1)
+position = Vector2(26, -32)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_pwjgy")
+hframes = 6
+frame = 5
+
+[node name="Button_restart" type="Button" parent="pausetext/restart"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 15.0
+offset_bottom = 13.0
+
+[node name="dead" type="Node2D" parent="."]
+process_mode = 3
+visible = false
+
+[node name="dead_screen" type="Sprite2D" parent="dead"]
+modulate = Color(0, 0, 0, 0.313726)
+z_index = 1200
+position = Vector2(239, 136)
+scale = Vector2(68.2302, 38.8734)
+texture = ExtResource("7_3gk1p")
+hframes = 4
+vframes = 4
+frame = 15
+
+[node name="Node2D" type="Node2D" parent="dead"]
+z_index = 1220
+
+[node name="Label" type="Label" parent="dead/Node2D"]
+offset_left = 53.0
+offset_top = 95.0
+offset_right = 412.0
+offset_bottom = 144.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "You're dead!
+Play again by clicking the replay button below!"
+horizontal_alignment = 1
+
+[node name="restart" type="Sprite2D" parent="dead"]
+modulate = Color(0.981127, 0.339741, 0.391828, 1)
+z_index = 1230
+position = Vector2(240, 165)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("5_pwjgy")
+hframes = 6
+frame = 5
+
+[node name="Button_restart" type="Button" parent="dead/restart"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 15.0
+offset_bottom = 13.0
+
+[node name="ground_tiles" type="TileMapLayer" parent="."]
+z_index = -10
+position = Vector2(2.08165e-12, -8)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAMAAAABAAAAAQAAAAMAAAACAAAAAQAAAAMAAAADAAAAAQAAAAMAAAAEAAAAAQAAAAMAAAAFAAAAAQAAAAMAAAAGAAAAAQAAAAMAAAAHAAAAAQAAAAMAAAAIAAAAAQAAAAMAAAAJAAAAAQAAAAMAAAAKAAAAAQAAAAMAAAALAAAAAQAAAAMAAAAMAAAAAQAAAAMAAAANAAAAAQAAAAMAAAAOAAAAAQACAAIAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAKAAEAAQAAAAAAAAAMAAEAAQAAAAAAAAALAAEAAQAAAAAAAAANAAEAAQAAAAAAAAAOAAEAAQACAAIAAAAAAAIAAAABAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAABAAEAAAAAAAUAAAAAAAEAAAAAAAYAAAABAAEAAAAAAAcAAQAAAAAAAAAAAAgAAQAAAAMAAAABAAgAAQAAAAMAAAACAAgAAQAAAAMAAAADAAgAAQAAAAMAAAAEAAgAAQAAAAMAAAAFAAgAAQAAAAMAAAAGAAgAAQAAAAMAAAAHAAgAAQAAAAMAAAAIAAgAAQAAAAMAAAAJAAgAAQAAAAMAAAAKAAgAAQAAAAMAAAALAAgAAQAAAAMAAAAMAAgAAQAAAAMAAAANAAgAAQAAAAMAAAAOAAgAAQACAAIAAAABAAcAAQAAAAAAAAACAAcAAQAAAAAAAAADAAcAAQAAAAAAAAAEAAcAAQAAAAAAAAAFAAcAAQAAAAAAAAAGAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAIAAcAAQAAAAAAAAAJAAcAAQAAAAAAAAAKAAcAAQAAAAAAAAALAAcAAQAAAAAAAAAMAAcAAQAAAAAAAAANAAcAAQAAAAAAAAAOAAcAAQACAAIAAAAOAAIAAQACAAIAAAAOAAMAAQACAAIAAAAOAAQAAQACAAIAAAAOAAUAAQACAAIAAAAOAAYAAQACAAIAAAABAAMAAAABAAEAAAABAAUAAAABAAEAAAABAAIAAAAAAAEAAAABAAQAAAAAAAEAAAABAAYAAAAAAAEAAAACAAYAAAABAAEAAAACAAQAAAABAAEAAAACAAIAAAABAAEAAAACAAMAAAAAAAEAAAACAAUAAAAAAAEAAAADAAIAAAAAAAEAAAADAAMAAAABAAEAAAADAAUAAAABAAEAAAADAAQAAAAAAAEAAAADAAYAAAAAAAEAAAAEAAIAAAABAAEAAAAEAAQAAAABAAEAAAAEAAYAAAABAAEAAAAEAAMAAAAAAAEAAAAEAAUAAAAAAAEAAAAFAAIAAAAAAAEAAAAFAAQAAAAAAAEAAAAFAAYAAAAAAAEAAAAFAAMAAAABAAEAAAAFAAUAAAABAAEAAAAGAAMAAAAAAAEAAAAGAAUAAAAAAAEAAAAGAAIAAAABAAEAAAAGAAQAAAABAAEAAAAGAAYAAAABAAEAAAAHAAIAAAAAAAEAAAAHAAQAAAAAAAEAAAAHAAYAAAAAAAEAAAAHAAMAAAABAAEAAAAHAAUAAAABAAEAAAAIAAMAAAAAAAEAAAAIAAUAAAAAAAEAAAAIAAIAAAABAAEAAAAIAAQAAAABAAEAAAAIAAYAAAABAAEAAAAJAAIAAAAAAAEAAAAJAAQAAAAAAAEAAAAJAAYAAAAAAAEAAAAJAAMAAAABAAEAAAAJAAUAAAABAAEAAAAKAAIAAAABAAEAAAAKAAQAAAABAAEAAAAKAAYAAAABAAEAAAAKAAMAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAIAAAAAAAEAAAALAAQAAAAAAAEAAAALAAYAAAAAAAEAAAALAAMAAAABAAEAAAALAAUAAAABAAEAAAAMAAIAAAABAAEAAAAMAAQAAAABAAEAAAAMAAYAAAABAAEAAAAMAAMAAAAAAAEAAAAMAAUAAAAAAAEAAAANAAUAAAABAAEAAAANAAMAAAABAAEAAAANAAIAAAAAAAEAAAANAAQAAAAAAAEAAAANAAYAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_8dl8b")
+
+[node name="hi_light" type="Sprite2D" parent="."]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(-100, 86)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 14
+
+[node name="slot_light" type="Sprite2D" parent="."]
+process_mode = 1
+modulate = Color(1, 1, 1, 0.196078)
+position = Vector2(-100, 125)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 14
+
+[node name="shovel" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 1
+y_sort_enabled = true
+position = Vector2(393, 24)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 15
+
+[node name="shovel_shadow" type="Sprite2D" parent="."]
+process_mode = 1
+position = Vector2(393, 24)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 16
+
+[node name="watering_can" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 1
+y_sort_enabled = true
+position = Vector2(298, 22)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 17
+
+[node name="watering_can_shadow" type="Sprite2D" parent="."]
+process_mode = 1
+position = Vector2(298, 22)
+texture = SubResource("CompressedTexture2D_eymok")
+hframes = 4
+vframes = 8
+frame = 18
+
+[node name="compose" type="Sprite2D" parent="."]
+process_mode = 1
+z_index = 1
+y_sort_enabled = true
+position = Vector2(343, 25)
+texture = ExtResource("10_hqyov")
+hframes = 4
+vframes = 8
+frame = 30
+
+[node name="compose_shadow" type="Sprite2D" parent="."]
+process_mode = 1
+position = Vector2(343, 25)
+texture = ExtResource("10_hqyov")
+hframes = 4
+vframes = 8
+frame = 31
+
+[node name="dead_area" type="Area2D" parent="."]
+position = Vector2(-16, 135)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead_area"]
+shape = SubResource("RectangleShape2D_5pil5")
+
+[node name="NightShade" type="ColorRect" parent="."]
+z_index = -2
+offset_top = -9.0
+offset_right = 480.0
+offset_bottom = 282.0
+mouse_filter = 1
+color = Color(0.141176, 0.156863, 0.301961, 0.8)
+
+[node name="sun_timer" type="Timer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="leaf_value" type="Node2D" parent="."]
+position = Vector2(26, 245)
+scale = Vector2(0.8, 0.8)
+
+[node name="Label" type="Label" parent="leaf_value"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="graft_slots" type="TileMapLayer" parent="."]
+z_index = -3
+position = Vector2(2.08165e-12, 14)
+tile_map_data = PackedByteArray("AAAAAAcAAAAAAAcAAAABAAcAAAABAAcAAAACAAcAAAAAAAYAAAADAAcAAAAAAAYAAAAEAAcAAAAAAAYAAAAFAAcAAAAAAAYAAAAGAAcAAAAAAAYAAAAHAAcAAAAAAAYAAAA=")
+tile_set = SubResource("TileSet_xw7xv")
+
+[node name="leaf" type="Sprite2D" parent="graft_slots"]
+z_index = 1
+position = Vector2(16, 240)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_ql41n")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="leaf_panel" type="Sprite2D" parent="graft_slots"]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -10
+position = Vector2(33.5, 240)
+scale = Vector2(2.09375, 1)
+texture = ExtResource("7_3gk1p")
+
+[node name="sun" type="Sprite2D" parent="."]
+position = Vector2(13, 16)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_ql41n")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="sun_value" type="Node2D" parent="."]
+position = Vector2(6, 38)
+scale = Vector2(0.8, 0.8)
+
+[node name="Label" type="Label" parent="sun_value"]
+offset_left = 21.25
+offset_top = -42.5
+offset_right = 101.25
+offset_bottom = -19.5
+scale = Vector2(0.578728, 1.26368)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "9999"
+horizontal_alignment = 1
+text_overrun_behavior = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="non_pause" type="Node2D" parent="."]
+process_mode = 3
+position = Vector2(423, 12)
+script = ExtResource("2_egcmh")
+
+[node name="Button_pause" type="Button" parent="non_pause"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3.0
+offset_right = 44.0
+offset_bottom = 25.0
+focus_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="pausetile" type="Sprite2D" parent="non_pause"]
+modulate = Color(0.436107, 0.745631, 0.920544, 1)
+z_index = 1201
+position = Vector2(20.7, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 15
+
+[node name="darkscreen" type="Sprite2D" parent="non_pause"]
+visible = false
+modulate = Color(0, 0, 0, 0.313726)
+z_index = 1200
+position = Vector2(-180, 125)
+scale = Vector2(68.2302, 38.8734)
+texture = ExtResource("7_3gk1p")
+hframes = 4
+vframes = 4
+frame = 15
+
+[node name="speedx1" type="Node2D" parent="."]
+position = Vector2(279, 236)
+
+[node name="Label" type="Label" parent="speedx1"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Button_speed1" type="Button" parent="speedx1"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3.0
+offset_right = 35.0
+offset_bottom = 25.0
+focus_mode = 0
+toggle_mode = true
+metadata/_edit_use_anchors_ = true
+
+[node name="speedtile" type="Sprite2D" parent="speedx1"]
+modulate = Color(0.443137, 0.8, 0.443137, 1)
+z_index = -1
+position = Vector2(22.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedx2" type="Node2D" parent="."]
+position = Vector2(324, 236)
+
+[node name="Label" type="Label" parent="speedx2"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "x2"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button_speed2" type="Button" parent="speedx2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3.0
+offset_right = 35.0
+offset_bottom = 25.0
+focus_mode = 0
+toggle_mode = true
+metadata/_edit_use_anchors_ = true
+
+[node name="speedtile" type="Sprite2D" parent="speedx2"]
+modulate = Color(0.960784, 0.921569, 0.435294, 1)
+z_index = -2
+position = Vector2(18.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile2" type="Sprite2D" parent="speedx2"]
+modulate = Color(0.960784, 0.921569, 0.435294, 1)
+z_index = -1
+position = Vector2(26.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedx3" type="Node2D" parent="."]
+position = Vector2(372, 236)
+
+[node name="Label" type="Label" parent="speedx3"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "x3"
+horizontal_alignment = 1
+
+[node name="Button_speed3" type="Button" parent="speedx3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3.0
+offset_right = 35.0
+offset_bottom = 25.0
+focus_mode = 0
+toggle_mode = true
+metadata/_edit_use_anchors_ = true
+
+[node name="speedtile1" type="Sprite2D" parent="speedx3"]
+modulate = Color(0.992157, 0.623529, 0.333333, 1)
+z_index = -3
+position = Vector2(16.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile2" type="Sprite2D" parent="speedx3"]
+modulate = Color(0.992157, 0.623529, 0.333333, 1)
+z_index = -2
+position = Vector2(22.7, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile3" type="Sprite2D" parent="speedx3"]
+modulate = Color(0.992157, 0.623529, 0.333333, 1)
+z_index = -1
+position = Vector2(29.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedx4" type="Node2D" parent="."]
+position = Vector2(423, 236)
+
+[node name="Label" type="Label" parent="speedx4"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "x4"
+horizontal_alignment = 1
+
+[node name="Button_speed4" type="Button" parent="speedx4"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 3.0
+offset_right = 44.0
+offset_bottom = 25.0
+focus_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="speedtile1" type="Sprite2D" parent="speedx4"]
+modulate = Color(0.992157, 0.407843, 0.403922, 1)
+z_index = -3
+position = Vector2(14.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile2" type="Sprite2D" parent="speedx4"]
+modulate = Color(0.992157, 0.407843, 0.403922, 1)
+z_index = -2
+position = Vector2(20.7, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile3" type="Sprite2D" parent="speedx4"]
+modulate = Color(0.992157, 0.407843, 0.403922, 1)
+z_index = -1
+position = Vector2(27.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="speedtile4" type="Sprite2D" parent="speedx4"]
+modulate = Color(0.992157, 0.407843, 0.403922, 1)
+z_index = -1
+position = Vector2(34.2, 13.3)
+scale = Vector2(0.757812, 0.75)
+texture = ExtResource("7_6uhf7")
+hframes = 4
+vframes = 4
+frame = 14
+
+[node name="seed_slots" type="TileMapLayer" parent="."]
+z_index = -3
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAcAAAABAAAAAAABAAcAAAACAAAAAAAAAAYAAAADAAAAAAAAAAYAAAAEAAAAAAAAAAYAAAAFAAAAAAAAAAYAAAAGAAAAAAAAAAYAAAAHAAAAAAAAAAYAAAAAAAEAAAADAAYAAAABAAEAAAADAAYAAAACAAEAAAADAAYAAAA=")
+tile_set = SubResource("TileSet_xw7xv")
+
+[node name="sun_cost_seed1" type="Node2D" parent="seed_slots"]
+z_index = 2
+position = Vector2(74, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed1"]
+offset_top = 3.33333
+offset_right = 40.0
+offset_bottom = 26.3333
+text = "125"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sun_cost_seed2" type="Node2D" parent="seed_slots"]
+z_index = 1
+position = Vector2(106, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed2"]
+offset_top = 3.33333
+offset_right = 40.0
+offset_bottom = 26.3333
+text = "75"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sun_cost_seed3" type="Node2D" parent="seed_slots"]
+z_index = 1
+position = Vector2(138, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed3"]
+offset_top = 6.66667
+offset_right = 40.0
+offset_bottom = 29.6667
+text = "100"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sun_cost_seed4" type="Node2D" parent="seed_slots"]
+z_index = 1
+position = Vector2(138, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed4"]
+offset_left = 110.0
+offset_top = 3.33333
+offset_right = 150.0
+offset_bottom = 26.3333
+text = "250"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sun_cost_seed5" type="Node2D" parent="seed_slots"]
+z_index = 1
+position = Vector2(138, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed5"]
+offset_left = 210.0
+offset_top = 3.33333
+offset_right = 250.0
+offset_bottom = 26.3333
+text = "225"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="sun_cost_seed6" type="Node2D" parent="seed_slots"]
+z_index = 1
+position = Vector2(138, 28)
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="seed_slots/sun_cost_seed6"]
+offset_left = 320.0
+offset_top = 3.33333
+offset_right = 360.0
+offset_bottom = 26.3333
+text = "175"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="shooter_seed1" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(80, 16)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_yjeqd")
+hframes = 21
+vframes = 2
+frame = 8
+
+[node name="bloom_seed2" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(112, 16)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_yjeqd")
+hframes = 21
+vframes = 2
+frame = 29
+
+[node name="vine_seed3" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(144, 16)
+texture = ExtResource("4_ofah3")
+hframes = 5
+frame = 1
+
+[node name="blaster_seed4" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(177, 16)
+scale = Vector2(1.016, 0.84375)
+texture = ExtResource("6_hmj1v")
+hframes = 12
+vframes = 2
+frame = 1
+
+[node name="peaspike_seed5" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(208, 16)
+scale = Vector2(1.016, 0.84375)
+texture = ExtResource("11_h2omc")
+hframes = 11
+vframes = 2
+frame = 1
+
+[node name="rose_seed6" type="Sprite2D" parent="seed_slots"]
+y_sort_enabled = true
+position = Vector2(240, 16)
+scale = Vector2(1.016, 0.84375)
+texture = ExtResource("12_hrmrm")
+hframes = 12
+vframes = 2
+frame = 1
+
+[node name="sun_panel" type="Sprite2D" parent="seed_slots"]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -14
+position = Vector2(32, 16)
+scale = Vector2(2, 1)
+texture = ExtResource("7_3gk1p")
+
+[node name="cooldown_bar_seed1" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(67.1, 3.1)
+scale = Vector2(0.81, 0.81)
+
+[node name="cooldown_bar_seed2" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(99.1, 3.1)
+scale = Vector2(0.81, 0.81)
+
+[node name="cooldown_bar_seed3" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(131, 3)
+scale = Vector2(0.81, 0.81)
+
+[node name="cooldown_bar_seed4" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(163.1, 3.1)
+scale = Vector2(0.81, 0.81)
+
+[node name="cooldown_bar_seed5" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(195.1, 3.1)
+scale = Vector2(0.81, 0.81)
+
+[node name="cooldown_bar_seed6" parent="seed_slots" instance=ExtResource("5_xht25")]
+z_index = -10
+position = Vector2(227.1, 3.1)
+scale = Vector2(0.81, 0.81)
+
+[node name="ColorBlockSeed4" type="ColorRect" parent="."]
+z_index = 2
+offset_left = 163.0
+offset_top = -2.0
+offset_right = 189.0
+offset_bottom = 34.0
+mouse_filter = 1
+color = Color(0.156863, 0.180392, 0.12549, 0.917647)
+
+[node name="ColorBlockSeed5" type="ColorRect" parent="."]
+z_index = 2
+offset_left = 194.0
+offset_top = -2.0
+offset_right = 220.0
+offset_bottom = 34.0
+mouse_filter = 1
+color = Color(0.156863, 0.180392, 0.12549, 0.917647)
+
+[node name="ColorBlockSeed6" type="ColorRect" parent="."]
+z_index = 2
+offset_left = 227.0
+offset_top = -2.0
+offset_right = 253.0
+offset_bottom = 34.0
+mouse_filter = 1
+color = Color(0.156863, 0.180392, 0.12549, 0.917647)
+
+[node name="ShowSeed4" type="Button" parent="."]
+visible = false
+offset_left = 526.0
+offset_top = -50.0
+offset_right = 552.0
+offset_bottom = -22.0
+text = "4"
+
+[node name="ShowSeed5" type="Button" parent="."]
+visible = false
+offset_left = 561.0
+offset_top = -49.0
+offset_right = 585.0
+offset_bottom = -21.0
+text = "5"
+
+[node name="ShowSeed6" type="Button" parent="."]
+visible = false
+offset_left = 596.0
+offset_top = -50.0
+offset_right = 621.0
+offset_bottom = -22.0
+text = "6"
+
+[node name="Timer2" parent="." instance=ExtResource("14_hrmrm")]
+position = Vector2(159, 40)
+
+[connection signal="button_up" from="pausetext/restart/Button_restart" to="." method="_on_button_restart_button_up"]
+[connection signal="button_up" from="dead/restart/Button_restart" to="." method="_on_button_restart_button_up"]
+[connection signal="area_entered" from="dead_area" to="." method="_on_dead_area_area_entered"]
+[connection signal="timeout" from="sun_timer" to="." method="_on_sun_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_up" from="non_pause/Button_pause" to="non_pause" method="_on_button_pause_button_up"]
+[connection signal="button_up" from="speedx1/Button_speed1" to="." method="_on_button_speed_1_button_up"]
+[connection signal="button_up" from="speedx2/Button_speed2" to="." method="_on_button_speed_2_button_up"]
+[connection signal="button_up" from="speedx3/Button_speed3" to="." method="_on_button_speed_3_button_up"]
+[connection signal="button_up" from="speedx4/Button_speed4" to="." method="_on_button_speed_4_button_up"]
+[connection signal="pressed" from="ShowSeed4" to="." method="_on_show_seed_4_pressed"]
+[connection signal="pressed" from="ShowSeed5" to="." method="_on_show_seed_5_pressed"]
+[connection signal="pressed" from="ShowSeed6" to="." method="_on_show_seed_6_pressed"]

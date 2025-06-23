@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0yxyhit56ocu"]
+
+[ext_resource type="Script" uid="uid://dacsg6uswxa77" path="res://day/Scripts/GameUI.tres.gd" id="1_pmpyg"]
+[ext_resource type="Texture2D" uid="uid://bp7rqgxwdh1vw" path="res://day/Assets/HUD/Heart.png" id="1_u1nxu"]
+[ext_resource type="PackedScene" uid="uid://ckghvqyot0wc" path="res://night/scenes/timer.tscn" id="2_0wq4q"]
+[ext_resource type="Texture2D" uid="uid://dfhw6rahcscrw" path="res://day/Assets/HUD/Dialog/FacesetBox.png" id="2_gvxld"]
+[ext_resource type="Texture2D" uid="uid://cbixquk7apigo" path="res://day/Assets/Items/Treasure/SilverCoin.png" id="2_hnvid"]
+[ext_resource type="Texture2D" uid="uid://ciy7ahh1on7mx" path="res://day/Assets/HUD/Dialog/WeaponBox.png" id="4_1wwtk"]
+[ext_resource type="Texture2D" uid="uid://w3p4f7o87xjh" path="res://day/Assets/HUD/Dialog/DialogBoxFaceset.png" id="4_8djfl"]
+[ext_resource type="Texture2D" uid="uid://b4610sl2fi4qg" path="res://day/Assets/Items/Potion/WaterPot.png" id="5_e683n"]
+[ext_resource type="Texture2D" uid="uid://d4nb6sn0xywmx" path="res://day/Assets/Items/Weapons/Sword2/Sprite.png" id="5_jiqq3"]
+[ext_resource type="PackedScene" uid="uid://13siya7oyt25" path="res://day/Scenes/PauseScreen.tscn" id="8_tvxln"]
+[ext_resource type="PackedScene" uid="uid://b2k1brhqhckeu" path="res://Managers/speed.tscn" id="11_tjdu0"]
+
+[node name="GameUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pmpyg")
+
+[node name="HealthContainer" type="HBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 20.0
+
+[node name="HeartController" type="Control" parent="HealthContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HealthContainer/HeartController"]
+texture = ExtResource("1_u1nxu")
+centered = false
+hframes = 5
+
+[node name="HeartController2" type="Control" parent="HealthContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HealthContainer/HeartController2"]
+texture = ExtResource("1_u1nxu")
+centered = false
+hframes = 5
+
+[node name="MoneyIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 24.0
+offset_right = 15.0
+offset_bottom = 35.0
+texture = ExtResource("2_hnvid")
+
+[node name="Moneycounter" type="Label" parent="MoneyIcon"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -2.0
+offset_right = 53.0
+offset_bottom = 18.0
+scale = Vector2(0.791686, 0.770681)
+text = "999"
+
+[node name="WeaponBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = -4.0
+grow_vertical = 0
+texture = ExtResource("4_1wwtk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WeaponSprite" type="TextureRect" parent="WeaponBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.605, 1.605)
+texture = ExtResource("5_jiqq3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ItemBackground" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -34.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_gvxld")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemSprite" type="TextureRect" parent="ItemBackground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.605, 1.605)
+texture = ExtResource("5_e683n")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Dialogue" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -56.0
+offset_right = 125.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_8djfl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Portrait" type="TextureRect" parent="Dialogue"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 39.0
+offset_bottom = 42.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="Dialogue"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 46.0
+offset_top = 11.0
+offset_right = 1986.0
+offset_bottom = 321.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 80
+autowrap_mode = 3
+max_lines_visible = 3
+
+[node name="PauseScreen" parent="." instance=ExtResource("8_tvxln")]
+visible = false
+layout_mode = 1
+
+[node name="Timer" parent="." instance=ExtResource("2_0wq4q")]
+position = Vector2(59, 12)
+
+[node name="Speed" parent="." instance=ExtResource("11_tjdu0")]
+position = Vector2(137, 159)
+scale = Vector2(0.593676, 1)
