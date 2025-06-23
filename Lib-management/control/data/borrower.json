@@ -1,0 +1,30 @@
+[
+  {
+    "borrowerId": 1,
+    "readerId": 101,
+    "bookId": 201,
+    "lendDate": "2023-10-01",
+    "backDate": null
+  },
+  {
+    "borrowerId": 2,
+    "readerId": 102,
+    "bookId": 202,
+    "lendDate": "2023-10-02",
+    "backDate": "2023-10-10"
+  },
+  {
+    "borrowerId": 3,
+    "readerId": 103,
+    "bookId": 203,
+    "lendDate": "2023-10-03",
+    "backDate": null
+  },
+  {
+    "borrowerId": 4,
+    "readerId": 104,
+    "bookId": 204,
+    "lendDate": "2024-11-04",
+    "backDate": null
+  }
+]

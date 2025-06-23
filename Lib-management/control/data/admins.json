@@ -1,0 +1,17 @@
+[
+  {
+    "username": "admin1",
+    "password": "$2b$10$7y6bHkQ/GyPqFU9c/ia2SutQqtdYipwSd3.0x52QUU0YhWwGdpJ6C",
+    "email": "admin1@example.com"
+  },
+  {
+    "username": "kzy",
+    "password": "$2b$10$EsXmRE052G07X8bJYydUxOabdeUfkCaoMyq5Dyukdm5g.6J7evwae",
+    "securityCode": "12345678"
+  },
+  {
+    "username": "zb",
+    "password": "$2b$10$MnPHcYKwHIMOSW/QjTubNO1iaGHIPQF.ecbrjbaNsxd7FIwM5pxaW",
+    "securityCode": "12345678"
+  }
+]

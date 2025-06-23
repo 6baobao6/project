@@ -1,0 +1,128 @@
+[
+  {
+    "bookId": 1,
+    "name": "大雪中的山庄",
+    "author": "东野圭吾",
+    "publish": "北京十月文艺出版社",
+    "isbn": "9787530216835",
+    "price": 35,
+    "number": 0
+  },
+  {
+    "bookId": 2,
+    "name": "三生三世 十里桃花",
+    "author": "唐七公子",
+    "publish": "沈阳出版社",
+    "isbn": "9787544138000",
+    "price": 26.8,
+    "number": 0
+  },
+  {
+    "bookId": 3,
+    "name": "何以笙箫默",
+    "author": "顾漫",
+    "publish": "朝华出版社",
+    "isbn": "9787505414709",
+    "price": 15,
+    "number": 0
+  },
+  {
+    "bookId": 4,
+    "name": "11处特工皇妃",
+    "author": "潇湘冬儿",
+    "publish": "江苏文艺出版社",
+    "isbn": "9787539943893",
+    "price": 74.8,
+    "number": 0
+  },
+  {
+    "bookId": 5,
+    "name": "人类简史",
+    "author": "[以色列] 尤瓦尔·赫拉利",
+    "publish": "中信出版社",
+    "isbn": "9787508647357",
+    "price": 68,
+    "number": 0
+  },
+  {
+    "bookId": 6,
+    "name": "明朝那些事儿（1-9）",
+    "author": "当年明月",
+    "publish": "中国海关出版社",
+    "isbn": "9787801656087",
+    "price": 358.2,
+    "number": 0
+  },
+  {
+    "bookId": 7,
+    "name": "经济学原理（上下）",
+    "author": "[美] 曼昆",
+    "publish": "机械工业出版社",
+    "isbn": "9787111126768",
+    "price": 88,
+    "number": 1
+  },
+  {
+    "bookId": 8,
+    "name": "方向",
+    "author": "马克-安托万·马修",
+    "publish": "后浪丨北京联合出版公司",
+    "isbn": "9787020125265",
+    "price": 99.8,
+    "number": 0
+  },
+  {
+    "bookId": 9,
+    "name": "画的秘密",
+    "author": "马克-安托万·马修",
+    "publish": "北京联合出版公司·后浪出版公司",
+    "isbn": "9787550265608",
+    "price": 60,
+    "number": 0
+  },
+  {
+    "bookId": 10,
+    "name": "造彩虹的人",
+    "author": "东野圭吾",
+    "publish": "北京十月文艺出版社",
+    "isbn": "9787530216859",
+    "price": 39.5,
+    "number": 1
+  },
+  {
+    "bookId": 11,
+    "name": "控方证人",
+    "author": "阿加莎·克里斯蒂",
+    "publish": "新星出版社",
+    "isbn": "9787513325745",
+    "price": 35,
+    "number": 1
+  },
+  {
+    "bookId": 12,
+    "name": "少有人走的路",
+    "author": "M·斯科特·派克",
+    "publish": "吉林文史出版社",
+    "isbn": "9787807023777",
+    "price": 26,
+    "number": 1
+  },
+  {
+    "bookId": 13,
+    "name": "追寻生命的意义",
+    "author": "[奥] 维克多·弗兰克",
+    "publish": "新华出版社",
+    "isbn": "9787501162734",
+    "price": 12,
+    "number": 1
+  },
+  {
+    "bookId": 14,
+    "name": "秘密花园",
+    "author": "乔汉娜·贝斯福",
+    "publish": "北京联合出版公司",
+    "isbn": "9787550252585",
+    "price": 0,
+    "number": 1
+  }
+]
